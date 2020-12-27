@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="WhoGoesToTheBoard">
+    <target name="clear">
+        <delete dir="build" />
+    </target>
+
+    <target name="build" depends="clear">
+        <mkdir dir="build/classes" />
+        <javac destdir="build/classes" srcdir="." encoding="utf-8">
+            <classpath>
+                <pathelement location="lib/junit-4.13.1.jar" />
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="run" depends="build">
+        <java classpath="build/classes/MainWindow" classname="MainWindow" fork="true" />
+    </target>
+
+    <target name="test" depends="build">
+        <junit printsummary="on" haltonfailure="on">
+            <classpath>
+                <pathelement location="build/classes" />
+                <pathelement location="lib/hamcrest-2.2.jar" />
+                <pathelement location="lib/junit-4.13.1.jar" />
+            </classpath>
+            <formatter type="plain" />
+            <test name="ListStud.ListStudTest" />
+            <test name="Randomizer.RandomizeTest" />
+        </junit>
+    </target>
+</project>
